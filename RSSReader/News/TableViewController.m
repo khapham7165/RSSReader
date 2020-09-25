@@ -69,6 +69,7 @@
     else
         cell.IMG.image = [UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[[NSURL alloc]initWithString:[[feeds objectAtIndex:indexPath.row] objectForKey:@"imgsrc"]]]];
     return cell;
+    
 }
 
 
@@ -129,6 +130,12 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *string = [feeds[indexPath.row] objectForKey:@"link"];
         [[segue destinationViewController] setUrl:string];
+        string = [feeds[indexPath.row] objectForKey:@"pubDate"];
+        [[segue destinationViewController] setDate:string];
+        string = [feeds[indexPath.row] objectForKey:@"imgsrc"];
+        [[segue destinationViewController] setImgurl:string];
+        string = [feeds[indexPath.row] objectForKey:@"title"];
+        [[segue destinationViewController] setTitle:string];
     }
 }
 @end

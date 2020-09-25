@@ -12,7 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DetailViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIWebView *detailWebView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *savebtn;
+
+- (IBAction)SaveBtnTap:(id)sender;
+
 @property (copy, nonatomic) NSString *url;
+@property (copy, nonatomic) NSString *imgurl;
+@property (copy, nonatomic) NSString *date;
+@property (copy, nonatomic) NSString *title;
 
 @end
 

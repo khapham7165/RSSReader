@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE6C84A7251E29D200507B42 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE6C84A5251E29D200507B42 /* Model.xcdatamodeld */; };
+		EE6C84B3251E4FFA00507B42 /* SavedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6C84B2251E4FFA00507B42 /* SavedTableViewController.m */; };
 		EEFA99D0251B7E91008E695A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEFA99CF251B7E91008E695A /* AppDelegate.m */; };
 		EEFA99D3251B7E91008E695A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEFA99D2251B7E91008E695A /* SceneDelegate.m */; };
 		EEFA99D9251B7E91008E695A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEFA99D7251B7E91008E695A /* Main.storyboard */; };
@@ -20,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE6C84A6251E29D200507B42 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		EE6C84B1251E4FFA00507B42 /* SavedTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavedTableViewController.h; sourceTree = "<group>"; };
+		EE6C84B2251E4FFA00507B42 /* SavedTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedTableViewController.m; sourceTree = "<group>"; };
 		EEFA99CB251B7E91008E695A /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEFA99CE251B7E91008E695A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EEFA99CF251B7E91008E695A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +56,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE6C84A9251E4F2D00507B42 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				EEFA99E9251B8521008E695A /* TableViewController.h */,
+				EEFA99EA251B8521008E695A /* TableViewController.m */,
+				EEFA99EE251BA4B0008E695A /* DetailViewController.h */,
+				EEFA99EF251BA4B0008E695A /* DetailViewController.m */,
+				EEFA99F2251BBEA0008E695A /* MainViewController.h */,
+				EEFA99F3251BBEA0008E695A /* MainViewController.m */,
+				EEFA99F6251BDA34008E695A /* TableViewCell.h */,
+				EEFA99F7251BDA34008E695A /* TableViewCell.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		EE6C84AB251E4F6000507B42 /* Saved-news */ = {
+			isa = PBXGroup;
+			children = (
+				EE6C84B1251E4FFA00507B42 /* SavedTableViewController.h */,
+				EE6C84B2251E4FFA00507B42 /* SavedTableViewController.m */,
+			);
+			path = "Saved-news";
+			sourceTree = "<group>";
+		};
+		EE6C84BD251E5D7B00507B42 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EE6C84A5251E29D200507B42 /* Model.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		EEFA99C2251B7E91008E695A = {
 			isa = PBXGroup;
 			children = (
@@ -79,14 +116,9 @@
 				EEFA99DC251B7EA1008E695A /* LaunchScreen.storyboard */,
 				EEFA99DF251B7EA1008E695A /* Info.plist */,
 				EEFA99E0251B7EA1008E695A /* main.m */,
-				EEFA99E9251B8521008E695A /* TableViewController.h */,
-				EEFA99EA251B8521008E695A /* TableViewController.m */,
-				EEFA99EE251BA4B0008E695A /* DetailViewController.h */,
-				EEFA99EF251BA4B0008E695A /* DetailViewController.m */,
-				EEFA99F2251BBEA0008E695A /* MainViewController.h */,
-				EEFA99F3251BBEA0008E695A /* MainViewController.m */,
-				EEFA99F6251BDA34008E695A /* TableViewCell.h */,
-				EEFA99F7251BDA34008E695A /* TableViewCell.m */,
+				EE6C84AB251E4F6000507B42 /* Saved-news */,
+				EE6C84BD251E5D7B00507B42 /* Data */,
+				EE6C84A9251E4F2D00507B42 /* News */,
 			);
 			path = RSSReader;
 			sourceTree = "<group>";
@@ -163,6 +195,8 @@
 				EEFA99F8251BDA34008E695A /* TableViewCell.m in Sources */,
 				EEFA99F0251BA4B0008E695A /* DetailViewController.m in Sources */,
 				EEFA99F4251BBEA0008E695A /* MainViewController.m in Sources */,
+				EE6C84B3251E4FFA00507B42 /* SavedTableViewController.m in Sources */,
+				EE6C84A7251E29D200507B42 /* Model.xcdatamodeld in Sources */,
 				EEFA99D0251B7E91008E695A /* AppDelegate.m in Sources */,
 				EEFA99E1251B7EA1008E695A /* main.m in Sources */,
 				EEFA99D3251B7E91008E695A /* SceneDelegate.m in Sources */,
@@ -362,6 +396,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EE6C84A5251E29D200507B42 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EE6C84A6251E29D200507B42 /* Model.xcdatamodel */,
+			);
+			currentVersion = EE6C84A6251E29D200507B42 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EEFA99C3251B7E91008E695A /* Project object */;
 }
