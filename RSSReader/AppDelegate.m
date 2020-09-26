@@ -82,4 +82,21 @@
     }
 }
 
+//Coredata deleteAll
+- (void)deleteAllEntities:(NSString *)nameEntity {
+    NSManagedObjectContext *context = self.persistentContainer.viewContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:nameEntity];
+    [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *object in fetchedObjects)
+    {
+        [context deleteObject:object];
+    }
+
+    error = nil;
+    [context save:&error];
+}
+
 @end

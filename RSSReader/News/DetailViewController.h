@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nonatomic) NSString *url;
 @property (copy, nonatomic) NSString *imgurl;
 @property (copy, nonatomic) NSString *date;
-@property (copy, nonatomic) NSString *title;
 
 @end
 

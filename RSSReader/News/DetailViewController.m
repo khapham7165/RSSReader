@@ -51,6 +51,7 @@
         // Save the object
         [self->appDelegate saveContext];
         NSLog(@"News save!");
+        
     }];
     
     UIAlertAction *saveCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action){

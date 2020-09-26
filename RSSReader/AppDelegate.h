@@ -15,6 +15,6 @@
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
 
 - (void)saveContext;
-
+- (void)deleteAllEntities:(NSString *)nameEntity;
 
 @end

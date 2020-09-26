@@ -40,6 +40,21 @@
     else{
         
     }
+    
+    if(results.count == 0)
+    {
+        [_DeleteAllBtn setEnabled:NO];
+        [_DeleteAllBtn setAlpha:0.5];
+    } else {
+        [_DeleteAllBtn setEnabled:YES];
+        [_DeleteAllBtn setAlpha:1];
+        
+    }
+}
+
+-(void)viewDidAppear{
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -123,4 +138,31 @@
 }
 */
 
+//try to recieve notification
+
+- (IBAction)deleteAllNewsBtnTap:(id)sender {
+    UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Alert!" message:@"Are you sure about that?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *saveOK = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        self->appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        [self->appDelegate deleteAllEntities:@"RSS"];
+        
+        [self viewDidLoad];
+        [self.tableView reloadData];
+    }];
+    
+    UIAlertAction *saveCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action){
+        
+    }];
+    
+    [saveAlert addAction:saveCancel];
+    [saveAlert addAction:saveOK];
+    
+    [self presentViewController:saveAlert animated:YES completion:nil];
+    
+}
+
+- (IBAction)ReloadBtnTap:(id)sender {
+    [self viewDidLoad];
+    [self.tableView reloadData];
+}
 @end
