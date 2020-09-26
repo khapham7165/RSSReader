@@ -20,10 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"Url: %@", self.url);
+    //convert string url to url
     NSString* webStringURL = [NSString stringWithFormat:@"%@", self.url];
     NSURL *myURL = [NSURL URLWithString:[webStringURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    NSLog(@"After copied url = %@",myURL);
+    NSLog(@"url = %@",myURL);
+    
+    //show url on webview
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
     [self.detailWebView loadRequest:request];
 }
@@ -41,16 +43,16 @@
         self->appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         self->context = self->appDelegate.persistentContainer.viewContext;
         
-        // Create a new managed object
+        // Create a new object
         NSManagedObject *newrss = [NSEntityDescription insertNewObjectForEntityForName:@"RSS" inManagedObjectContext:self->context];
         [newrss setValue:self.url forKey:@"url"];
         [newrss setValue:self.imgurl forKey:@"imgurl"];
         [newrss setValue:self.date forKey:@"date"];
         [newrss setValue:self.title forKey: @"title"];
         
-        // Save the object
+        // Save the object into core data
         [self->appDelegate saveContext];
-        NSLog(@"News save!");
+        NSLog(@"News saved!");
         
     }];
     
@@ -61,6 +63,7 @@
     [saveAlert addAction:saveCancel];
     [saveAlert addAction:saveOK];
     
+    //show allert
     [self presentViewController:saveAlert animated:YES completion:nil];
     
 }

@@ -16,5 +16,7 @@
 
 - (void)saveContext;
 - (void)deleteAllEntities:(NSString *)nameEntity;
+- (NSArray *)fetchArrayFromCoreData:(NSString *)Entity;
+- (NSMutableString *)getStringFromString:(NSMutableString *)string :(NSString *)from :(NSString *)to;
 
 @end

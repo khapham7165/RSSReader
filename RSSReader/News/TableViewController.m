@@ -10,7 +10,7 @@
 #import "TableViewCell.h"
 
 @interface TableViewController (){
-    
+    //"things"
     NSXMLParser *parser;
     NSMutableArray *feeds;
     NSMutableDictionary *item;
@@ -39,8 +39,12 @@
     self.tableView.rowHeight = 110;
     
     feeds = [[NSMutableArray alloc] init];
+    
+    //Convert url string to url
     NSURL *url = [NSURL URLWithString:self.rssurl];
     NSLog(@"rssurl: %@ \n", url);
+    
+    //parsing
     parser = [[NSXMLParser alloc]initWithContentsOfURL:url];
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
@@ -73,13 +77,13 @@
 }
 
 
-#pragma mark - Parser setting
+#pragma mark - Parsing
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(nonnull NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(nonnull NSDictionary<NSString *,NSString *> *)attributeDict{
     
     element = elementName;
     
-    if ([element isEqualToString:@"item"]) {
+    if ([element isEqualToString:@"item"]) { //init "things"
         item = [[NSMutableDictionary alloc] init];
         title = [[NSMutableString alloc] init];
         link = [[NSMutableString alloc] init];
@@ -91,7 +95,7 @@
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
     
-    if([elementName isEqualToString:@"item"]){
+    if([elementName isEqualToString:@"item"]){ //if an item save "things" into item
         [item setObject:title forKey:@"title"];
         [item setObject:link forKey:@"link"];
         [item setObject:pubDate forKey:@"pubDate"];
@@ -102,12 +106,14 @@
             [imgsrc appendString:[desc substringWithRange:NSMakeRange(searchFromRange.location+searchFromRange.length, searchToRange.location-searchFromRange.location-searchFromRange.length)]];
         }
         [item setObject:imgsrc forKey:@"imgsrc"];
-        //NSLog(@"imgsrc: %@", imgsrc);
+        
+        //copy item into feeds
         [feeds addObject: [item copy]];
     }
 }
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
+    //put char into "things"
     if([element isEqualToString:@"title"])
         [title appendString:string];
     else if ([element isEqualToString:@"pubDate"])
@@ -116,9 +122,7 @@
         [link appendString:string];
     else if ([element isEqualToString:@"description"]){
         [desc appendString:string];
-        
     }
-    //NSLog(@"imgsrc: %@", imgsrc);
 }
 
 -(void)parserDidEndDocument:(NSXMLParser *)parser{
@@ -127,6 +131,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showWebSegue"]) {
+        //copy data into show web view to save if neccessary
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSString *string = [feeds[indexPath.row] objectForKey:@"link"];
         [[segue destinationViewController] setUrl:string];

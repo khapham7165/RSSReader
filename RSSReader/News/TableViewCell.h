@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TableViewCell : UITableViewCell
+@interface TableViewCell : UITableViewCell //cell things
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;

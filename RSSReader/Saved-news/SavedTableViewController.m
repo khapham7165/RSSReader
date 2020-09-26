@@ -8,6 +8,7 @@
 #import "SavedTableViewController.h"
 #import "AppDelegate.h"
 #import "TableViewCell.h"
+#import "SaveNewsViewController.h"
 
 @interface SavedTableViewController (){
 
@@ -25,27 +26,18 @@
     
     self.tableView.rowHeight = 110;
     
+    //get data from core data through appdelegate function
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    context = appDelegate.persistentContainer.viewContext;
+    results = [appDelegate fetchArrayFromCoreData:@"RSS"]; //data goes to result
     
-    //fetch to test
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"RSS"];
-    [request setReturnsObjectsAsFaults:NO];
-    NSError *error = nil;
-    results = [context executeFetchRequest:request error:&error];
-    if (!results) {
-        NSLog(@"Error fetching RSS objects: %@\n%@", [error localizedDescription], [error userInfo]);
-        abort();
-    }
-    else{
-        
-    }
-    
+    //delete all button handler
     if(results.count == 0)
     {
+        //if no data in core set disable button delete all
         [_DeleteAllBtn setEnabled:NO];
         [_DeleteAllBtn setAlpha:0.5];
     } else {
+        //else enable
         [_DeleteAllBtn setEnabled:YES];
         [_DeleteAllBtn setAlpha:1];
         
@@ -71,24 +63,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SavedCell" forIndexPath:indexPath];
     
-    //get date from result array------------------------------------------------
-    NSMutableString *resultstring = [NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]];
-    NSRange searchFromRange = [resultstring rangeOfString:@"date = \""];
-    NSRange searchToRange = [resultstring rangeOfString:@"\";\n    imgurl"];
-    cell.dateLabel.text = [NSMutableString stringWithFormat:@"%@", [resultstring substringWithRange:NSMakeRange(searchFromRange.location+searchFromRange.length, searchToRange.location-searchFromRange.location-searchFromRange.length)]];
+    //set things from function in delegate------------------------------------------------
     
-    //get title
-    searchFromRange = [resultstring rangeOfString:@"title = \""];
-    searchToRange = [resultstring rangeOfString:@"\";\n    url"];
-    cell.titleLabel.text = [NSMutableString stringWithFormat:@"%@", [resultstring substringWithRange:NSMakeRange(searchFromRange.location+searchFromRange.length, searchToRange.location-searchFromRange.location-searchFromRange.length)]];
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     
-    //get imgurl (some will not have imgurl
-    if ([resultstring rangeOfString:@"imgurl = nil"].location == NSNotFound) {
-        searchFromRange = [resultstring rangeOfString:@"imgurl = \""];
-        searchToRange = [resultstring rangeOfString:@"\";\n    title"];
-        cell.IMG.image = [UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[[NSURL alloc]initWithString:[NSMutableString stringWithFormat:@"%@", [resultstring substringWithRange:NSMakeRange(searchFromRange.location+searchFromRange.length, searchToRange.location-searchFromRange.location-searchFromRange.length)]]]]];
+    //set date
+    cell.dateLabel.text = [NSMutableString stringWithFormat:@"%@",[appDelegate getStringFromString:[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] :@"date = \"" :@"\";\n    imgurl"]];
+    
+    //set title
+    cell.titleLabel.text = [NSMutableString stringWithFormat:@"%@",[appDelegate getStringFromString:[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] :@"title = \"" :@"\";\n    url"]];
+    
+    //set imgurl (some will not have imgurl
+    if ([[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] rangeOfString:@"imgurl = nil"].location == NSNotFound) {
+        cell.IMG.image = [UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[[NSURL alloc]initWithString:[NSMutableString stringWithFormat:@"%@",[appDelegate getStringFromString:[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] :@"imgurl = \"" :@"\";\n    title"]]]]];
     }
-        
+    //-------------------------------------------------------------------------------------
     
     return cell;
 }
@@ -128,24 +117,37 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"ShowSaveSegue"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        
+        //get url string
+        NSString *string = [NSMutableString stringWithFormat:@"%@",[appDelegate getStringFromString:[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] :@" url = \"" :@"\";\n})"]];
+        
+        //set url for next view
+        [[segue destinationViewController] setUrl:string];
+    }
 }
-*/
 
-//try to recieve notification
+
+#pragma mark - Buttons setting
 
 - (IBAction)deleteAllNewsBtnTap:(id)sender {
+    //alert when delete all button tapped
     UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Alert!" message:@"Are you sure about that?" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *saveOK = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        
+        //use funtion wrote in appdelegate
         self->appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         [self->appDelegate deleteAllEntities:@"RSS"];
         
+        //reload when done deleting
         [self viewDidLoad];
         [self.tableView reloadData];
     }];
@@ -157,11 +159,13 @@
     [saveAlert addAction:saveCancel];
     [saveAlert addAction:saveOK];
     
+    //show alert
     [self presentViewController:saveAlert animated:YES completion:nil];
     
 }
 
 - (IBAction)ReloadBtnTap:(id)sender {
+    //reload all when reload button tapped
     [self viewDidLoad];
     [self.tableView reloadData];
 }
