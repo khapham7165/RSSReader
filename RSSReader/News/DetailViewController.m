@@ -11,7 +11,10 @@
 @interface DetailViewController (){
     AppDelegate *appDelegate;
     NSManagedObjectContext *context;
-    NSArray *dictionaties;
+    NSArray *results;
+    NSData *myPagedata;
+    NSURL *myURL;
+    NSURL *myImgURL;
 }
 @end
 
@@ -22,12 +25,27 @@
     
     //convert string url to url
     NSString* webStringURL = [NSString stringWithFormat:@"%@", self.url];
-    NSURL *myURL = [NSURL URLWithString:[webStringURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    myURL = [NSURL URLWithString:[webStringURL stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     NSLog(@"url = %@",myURL);
     
-    //show url on webview
+    //show url content on webview
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
     [self.detailWebView loadRequest:request];
+    
+    //disable save if already save
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    results = [appDelegate fetchArrayFromCoreData:@"RSS"];
+    if (results.count > 0){
+        //compare 2 urls
+        for(unsigned int i = 0; i < [results count]; i++){
+            NSManagedObject *item = (NSManagedObject *)[results objectAtIndex:i];
+            //NSLog(@"self url: %@\ncompare : %@", self.url, [item valueForKey:@"url"]);
+            if([[item valueForKey:@"url"] isEqualToString:self.url]){
+                [_savebtn setEnabled:NO];
+                break;
+            }
+        }
+    }
 }
 
 //save button action
@@ -46,10 +64,11 @@
         // Create a new object
         NSManagedObject *newrss = [NSEntityDescription insertNewObjectForEntityForName:@"RSS" inManagedObjectContext:self->context];
         [newrss setValue:self.url forKey:@"url"];
-        [newrss setValue:self.imgurl forKey:@"imgurl"];
+        self->myImgURL = [NSURL URLWithString:self.imgurl];
+        [newrss setValue:[NSData dataWithContentsOfURL: self->myImgURL] forKey:@"imgdata"];
         [newrss setValue:self.date forKey:@"date"];
         [newrss setValue:self.title forKey: @"title"];
-        
+        [newrss setValue:[NSData dataWithContentsOfURL: self->myURL] forKey:@"webdata"];
         // Save the object into core data
         [self->appDelegate saveContext];
         NSLog(@"News saved!");

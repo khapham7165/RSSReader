@@ -6,8 +6,13 @@
 //
 
 #import "SaveNewsViewController.h"
+#import "AppDelegate.h"
 
-@interface SaveNewsViewController ()
+@interface SaveNewsViewController (){
+    AppDelegate *appDelegate;
+    NSArray *result;
+    NSManagedObject *item;
+}
 
 @end
 
@@ -15,22 +20,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Url: %@", self.url);
-    NSString* webStringURL = [NSString stringWithFormat:@"%@", self.url];
-    NSURL *myURL = [NSURL URLWithString:[webStringURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSLog(@"After copied url = %@",myURL);
-    NSURLRequest *request = [NSURLRequest requestWithURL:myURL];
-    [self.webView loadRequest:request];
+    
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    result = [self->appDelegate fetchArrayFromCoreData:@"RSS"]; //data goes to result
+    item = (NSManagedObject *)[self->result objectAtIndex:self.indexPath.row];
+    
+    [self.webView loadData:[item valueForKey:@"webdata"] MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:nil];
+
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)unsaveBtnTap:(id)sender {
+    
+    UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Delete from saved-news!" message:@"Are you sure about that?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *saveOK = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        
+        NSManagedObjectContext *context = self->appDelegate.persistentContainer.viewContext;
+        [context deleteObject:self->item];
+        
+        NSError *deleteError = nil;
+         
+        if (![self->item.managedObjectContext save:&deleteError]) {
+            NSLog(@"Unable to save managed object context.");
+            NSLog(@"%@, %@", deleteError, deleteError.localizedDescription);
+        }
+        
+        [self->_unsaveBtn setEnabled: NO];
+        
+        
+    }];
+    
+    UIAlertAction *saveCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action){
+        
+    }];
+    
+    [saveAlert addAction:saveCancel];
+    [saveAlert addAction:saveOK];
+    
+    //show alert
+    [self presentViewController:saveAlert animated:YES completion:nil];
 }
-*/
-
 @end

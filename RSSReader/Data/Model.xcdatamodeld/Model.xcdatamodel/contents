@@ -2,11 +2,13 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="RSS" representedClassName="RSS" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="imgdata" optional="YES" attributeType="Binary"/>
         <attribute name="imgurl" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="webdata" optional="YES" attributeType="Binary"/>
     </entity>
     <elements>
-        <element name="RSS" positionX="-54" positionY="-9" width="128" height="103"/>
+        <element name="RSS" positionX="-54" positionY="-9" width="128" height="133"/>
     </elements>
 </model>

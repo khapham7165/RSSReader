@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SaveNewsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (copy, nonatomic) NSString *url;
+@property (copy, nonatomic) NSIndexPath *indexPath;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *unsaveBtn;
+- (IBAction)unsaveBtnTap:(id)sender;
 
 @end
 

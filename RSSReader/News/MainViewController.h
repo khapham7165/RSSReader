@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UITextField *RSSTextField;
 @property (strong, nonatomic) IBOutlet UIButton *ReadRSSButton;
 - (IBAction)vnetouch:(UIButton*)sender;
+@property (weak, nonatomic) IBOutlet UITextField *aTextField;
 
 @end
 

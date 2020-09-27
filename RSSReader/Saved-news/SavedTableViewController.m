@@ -15,7 +15,7 @@
     AppDelegate *appDelegate;
     NSManagedObjectContext *context;
     NSArray *results;
-    
+    NSManagedObject *item;
 }
 @end
 
@@ -40,8 +40,9 @@
         //else enable
         [_DeleteAllBtn setEnabled:YES];
         [_DeleteAllBtn setAlpha:1];
-        
     }
+    
+    
 }
 
 -(void)viewDidAppear{
@@ -65,57 +66,22 @@
     
     //set things from function in delegate------------------------------------------------
     
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    item = (NSManagedObject *)[results objectAtIndex:indexPath.row];
     
     //set date
-    cell.dateLabel.text = [NSMutableString stringWithFormat:@"%@",[appDelegate getStringFromString:[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] :@"date = \"" :@"\";\n    imgurl"]];
     
+    cell.dateLabel.text = [item valueForKey:@"date"];
     //set title
-    cell.titleLabel.text = [NSMutableString stringWithFormat:@"%@",[appDelegate getStringFromString:[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] :@"title = \"" :@"\";\n    url"]];
+    cell.titleLabel.text = [item valueForKey:@"title"];
     
     //set imgurl (some will not have imgurl
-    if ([[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] rangeOfString:@"imgurl = nil"].location == NSNotFound) {
-        cell.IMG.image = [UIImage imageWithData:[[NSData alloc] initWithContentsOfURL:[[NSURL alloc]initWithString:[NSMutableString stringWithFormat:@"%@",[appDelegate getStringFromString:[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] :@"imgurl = \"" :@"\";\n    title"]]]]];
-    }
+    cell.IMG.image = [UIImage imageWithData:[item valueForKey:@"imgdata"]];
+    
     //-------------------------------------------------------------------------------------
     
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Navigation
@@ -124,14 +90,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"ShowSaveSegue"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
-        appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        
-        //get url string
-        NSString *string = [NSMutableString stringWithFormat:@"%@",[appDelegate getStringFromString:[NSMutableString stringWithFormat:@"%@", [results objectAtIndex:indexPath.row]] :@" url = \"" :@"\";\n})"]];
-        
-        //set url for next view
-        [[segue destinationViewController] setUrl:string];
+
+        //set item for next view
+        [[segue destinationViewController] setIndexPath:indexPath];
+        item = (NSManagedObject *)[results objectAtIndex:indexPath.row];
+        [[segue destinationViewController] setTitle:[item valueForKey:@"title"]];
     }
 }
 

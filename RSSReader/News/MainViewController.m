@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //NSURL *rssurl = [NSURL URLWithString:_RSSTextField.text];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
 }
 
 
@@ -52,5 +54,10 @@
 }
 - (IBAction)vnetouch:(UIButton*)sender {
     
+}
+
+-(void)dismissKeyboard
+{
+    [_aTextField resignFirstResponder];
 }
 @end
