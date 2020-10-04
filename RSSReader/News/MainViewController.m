@@ -19,6 +19,8 @@
     //NSURL *rssurl = [NSURL URLWithString:_RSSTextField.text];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+    
+    
 }
 
 
@@ -26,29 +28,35 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
+    NSString *string = _RSSTextField.text;
     //link for each tap
     if([segue.identifier isEqualToString:@"showTableSegue"]) {
-        NSString *string = _RSSTextField.text;
+        string = _RSSTextField.text;
         [[segue destinationViewController] setRssurl:string];
         string = @"News";
         [[segue destinationViewController] setTitle:string];
     } else if ([segue.identifier
     isEqualToString:@"showVNE"]) {
-        NSString *string = @"https://vnexpress.net/rss/thoi-su.rss";
+        string = @"https://vnexpress.net/rss/thoi-su.rss";
         [[segue destinationViewController] setRssurl:string];
         string = @"VNExpress News";
         [[segue destinationViewController] setTitle:string];
     } else if ([segue.identifier
     isEqualToString:@"showYH"]) {
-        NSString *string = @"https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en";
+        string = @"https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en";
         [[segue destinationViewController] setRssurl:string];
         string = @"Google News";
         [[segue destinationViewController] setTitle:string];
     } else if ([segue.identifier
     isEqualToString:@"appleNews"]) {
-        NSString *string = @"https://developer.apple.com/news/rss/news.rss";
+        string = @"https://developer.apple.com/news/rss/news.rss";
         [[segue destinationViewController] setRssurl:string];
         string = @"Apple News";
+        [[segue destinationViewController] setTitle:string];
+    } else if ([segue.identifier isEqualToString:@"showHCMUS"]) {
+        string = @"https://www.fit.hcmus.edu.vn/vn/feed.aspx";
+        [[segue destinationViewController] setRssurl:string];
+        string = @"HCMUS(fit) News";
         [[segue destinationViewController] setTitle:string];
     }
 }

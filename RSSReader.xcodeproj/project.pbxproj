@@ -20,6 +20,8 @@
 		EEFA99F0251BA4B0008E695A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEFA99EF251BA4B0008E695A /* DetailViewController.m */; };
 		EEFA99F4251BBEA0008E695A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEFA99F3251BBEA0008E695A /* MainViewController.m */; };
 		EEFA99F8251BDA34008E695A /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEFA99F7251BDA34008E695A /* TableViewCell.m */; };
+		F8246A3825291CF50042EBA1 /* SavedRSSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8246A3725291CF50042EBA1 /* SavedRSSTableViewController.m */; };
+		F8246A3C25291D4B0042EBA1 /* SaveRSSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F8246A3B25291D4B0042EBA1 /* SaveRSSTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,10 @@
 		EEFA99F3251BBEA0008E695A /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		EEFA99F6251BDA34008E695A /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		EEFA99F7251BDA34008E695A /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		F8246A3625291CF50042EBA1 /* SavedRSSTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavedRSSTableViewController.h; sourceTree = "<group>"; };
+		F8246A3725291CF50042EBA1 /* SavedRSSTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedRSSTableViewController.m; sourceTree = "<group>"; };
+		F8246A3A25291D4B0042EBA1 /* SaveRSSTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveRSSTableViewCell.h; sourceTree = "<group>"; };
+		F8246A3B25291D4B0042EBA1 /* SaveRSSTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveRSSTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,11 +127,23 @@
 				EEFA99DC251B7EA1008E695A /* LaunchScreen.storyboard */,
 				EEFA99DF251B7EA1008E695A /* Info.plist */,
 				EEFA99E0251B7EA1008E695A /* main.m */,
+				EE6C84A9251E4F2D00507B42 /* News */,
+				F8246A3525291CB30042EBA1 /* Saved-RSS */,
 				EE6C84AB251E4F6000507B42 /* Saved-news */,
 				EE6C84BD251E5D7B00507B42 /* Data */,
-				EE6C84A9251E4F2D00507B42 /* News */,
 			);
 			path = RSSReader;
+			sourceTree = "<group>";
+		};
+		F8246A3525291CB30042EBA1 /* Saved-RSS */ = {
+			isa = PBXGroup;
+			children = (
+				F8246A3625291CF50042EBA1 /* SavedRSSTableViewController.h */,
+				F8246A3725291CF50042EBA1 /* SavedRSSTableViewController.m */,
+				F8246A3A25291D4B0042EBA1 /* SaveRSSTableViewCell.h */,
+				F8246A3B25291D4B0042EBA1 /* SaveRSSTableViewCell.m */,
+			);
+			path = "Saved-RSS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +218,8 @@
 				EEFA99F8251BDA34008E695A /* TableViewCell.m in Sources */,
 				EEFA99F0251BA4B0008E695A /* DetailViewController.m in Sources */,
 				EE168490251F400900914FFF /* SaveNewsViewController.m in Sources */,
+				F8246A3C25291D4B0042EBA1 /* SaveRSSTableViewCell.m in Sources */,
+				F8246A3825291CF50042EBA1 /* SavedRSSTableViewController.m in Sources */,
 				EEFA99F4251BBEA0008E695A /* MainViewController.m in Sources */,
 				EE6C84B3251E4FFA00507B42 /* SavedTableViewController.m in Sources */,
 				EE6C84A7251E29D200507B42 /* Model.xcdatamodeld in Sources */,

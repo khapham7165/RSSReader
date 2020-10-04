@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (copy, nonatomic) NSString* rssurl;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *favBtn;
+- (IBAction)favBtnTap:(id)sender;
 
 
 
