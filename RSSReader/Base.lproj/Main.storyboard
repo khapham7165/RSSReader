@@ -89,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0F-ow-icv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1200" y="-15.401785714285714"/>
+            <point key="canvasLocation" x="-697" y="260"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="fdC-0k-mxr">
@@ -127,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CkL-97-y0H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-346" y="-15"/>
+            <point key="canvasLocation" x="-697" y="1167"/>
         </scene>
         <!--Home-->
         <scene sceneID="TpH-DG-RhR">
@@ -357,7 +357,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BgZ-ho-mYv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2697" y="735"/>
+            <point key="canvasLocation" x="-2717" y="1629"/>
         </scene>
         <!--Saved-RSS-->
         <scene sceneID="WVF-7F-cwF">
@@ -423,20 +423,14 @@
                             <outlet property="delegate" destination="250-pF-5QM" id="5Ov-43-177"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Saved-RSS" id="1RL-YB-N3I">
-                        <barButtonItem key="rightBarButtonItem" title="Reload" image="goforward" catalog="system" id="MKX-ms-6sr">
-                            <connections>
-                                <action selector="reloadBtnTap:" destination="250-pF-5QM" id="guB-cc-jKa"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Saved-RSS" id="1RL-YB-N3I"/>
                     <connections>
                         <outlet property="delAllBtn" destination="yR0-1f-gK9" id="kKD-2i-Zaf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGg-ip-QTA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1930.4347826086957" y="1450.4464285714284"/>
+            <point key="canvasLocation" x="-1810" y="769"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5TJ-vS-hnH">
@@ -453,7 +447,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNL-Ct-CQC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2697" y="1450"/>
+            <point key="canvasLocation" x="-2717" y="770"/>
         </scene>
         <!--Saved-news-->
         <scene sceneID="BTo-oP-PzS">
@@ -524,7 +518,7 @@
                                     <outlet property="IMG" destination="Ssx-Ld-WUo" id="yYz-oP-yHW"/>
                                     <outlet property="dateLabel" destination="ARl-9F-yiE" id="XvO-pf-NeP"/>
                                     <outlet property="titleLabel" destination="Qrr-ns-dT2" id="8Kb-f5-5Fl"/>
-                                    <segue destination="jJd-Bw-CtJ" kind="show" identifier="ShowSaveSegue" id="LQK-rX-IOD"/>
+                                    <segue destination="bBV-WT-Y5W" kind="show" identifier="ShowSaveSegue" id="LUX-EI-uwQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -533,13 +527,7 @@
                             <outlet property="delegate" destination="bxD-j4-jvb" id="enT-MM-scr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Saved-news" id="8hi-cb-PIR">
-                        <barButtonItem key="rightBarButtonItem" title="Reload" image="goforward" catalog="system" id="vJI-VC-BHx">
-                            <connections>
-                                <action selector="ReloadBtnTap:" destination="bxD-j4-jvb" id="E6l-pc-M3d"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Saved-news" id="8hi-cb-PIR"/>
                     <connections>
                         <outlet property="DeleteAllBtn" destination="BD4-QW-iKX" id="GNh-gz-LQy"/>
                         <outlet property="tableView" destination="YLt-6M-yWI" id="NcL-hJ-14A"/>
@@ -547,57 +535,18 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyE-ZZ-T9P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1930.4347826086957" y="734.59821428571422"/>
-        </scene>
-        <!--Save News View Controller-->
-        <scene sceneID="jVm-qC-3w8">
-            <objects>
-                <viewController id="jJd-Bw-CtJ" customClass="SaveNewsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jkZ-Ai-8Vl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5w-XW-8Nz">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="H8u-Iy-6s6"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="V5w-XW-8Nz" firstAttribute="trailing" secondItem="H8u-Iy-6s6" secondAttribute="trailing" id="MS0-9A-PSa"/>
-                            <constraint firstAttribute="bottom" secondItem="V5w-XW-8Nz" secondAttribute="bottom" id="R3y-6h-ZYa"/>
-                            <constraint firstItem="V5w-XW-8Nz" firstAttribute="leading" secondItem="H8u-Iy-6s6" secondAttribute="leading" id="VLO-zc-W9H"/>
-                            <constraint firstItem="V5w-XW-8Nz" firstAttribute="top" secondItem="H8u-Iy-6s6" secondAttribute="top" id="iCy-aS-CJT"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="PEM-Rb-8Ma">
-                        <barButtonItem key="rightBarButtonItem" title="Unsave" image="heart.slash.fill" catalog="system" id="uG2-oS-Pdp">
-                            <connections>
-                                <action selector="unsaveBtnTap:" destination="jJd-Bw-CtJ" id="PNF-7z-en1"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="unsaveBtn" destination="uG2-oS-Pdp" id="Exu-fF-PNE"/>
-                        <outlet property="webView" destination="V5w-XW-8Nz" id="g8O-p1-X1e"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8oU-Sl-6Dm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1200" y="735"/>
+            <point key="canvasLocation" x="-1810" y="1629"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="LUX-EI-uwQ"/>
         <segue reference="f6O-0N-dWD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="4_google_news_data_newspaaper_newsfeed_service_daily-512" width="512" height="512"/>
         <image name="600px-Apple_News_icon_(iOS)" width="600" height="600"/>
         <image name="Unknown-removebg-preview-1" width="332" height="85"/>
-        <image name="goforward" catalog="system" width="121" height="128"/>
         <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="heart.slash.fill" catalog="system" width="128" height="115"/>
         <image name="icon" width="170" height="170"/>
         <image name="istockphoto-1183116358-170667a-removebg-preview" width="416" height="416"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>

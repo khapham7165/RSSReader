@@ -10,7 +10,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SavedTableViewController : UITableViewController
-- (IBAction)ReloadBtnTap:(id)sender;
 - (IBAction)deleteAllNewsBtnTap:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *DeleteAllBtn;
 

@@ -10,7 +10,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SavedRSSTableViewController : UITableViewController
-- (IBAction)reloadBtnTap:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *delAllBtn;
 - (IBAction)delAllBtnTap:(id)sender;
 

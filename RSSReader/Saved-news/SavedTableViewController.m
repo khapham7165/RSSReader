@@ -8,7 +8,7 @@
 #import "SavedTableViewController.h"
 #import "AppDelegate.h"
 #import "TableViewCell.h"
-#import "SaveNewsViewController.h"
+#import "DetailViewController.h"
 
 @interface SavedTableViewController (){
 
@@ -16,6 +16,8 @@
     NSManagedObjectContext *context;
     NSArray *results;
     NSManagedObject *item;
+    
+    UIRefreshControl *refreshControl;
 }
 @end
 
@@ -42,6 +44,15 @@
         [_DeleteAllBtn setAlpha:1];
     }
     
+    //Refresh control
+    refreshControl = [[UIRefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+
+    if (@available(iOS 10.0, *)) {
+        self.tableView.refreshControl = refreshControl;
+    } else {
+        [self.tableView addSubview:refreshControl];
+    }
     
 }
 
@@ -92,9 +103,11 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
         //set item for next view
-        [[segue destinationViewController] setIndexPath:indexPath];
         item = (NSManagedObject *)[results objectAtIndex:indexPath.row];
         [[segue destinationViewController] setTitle:[item valueForKey:@"title"]];
+        [[segue destinationViewController] setUrl:[item valueForKey:@"url"]];
+        [[segue destinationViewController] setImgurl:[item valueForKey:@"imgurl"]];
+        [[segue destinationViewController] setDate:[item valueForKey:@"date"]];
     }
 }
 
@@ -127,9 +140,12 @@
     
 }
 
-- (IBAction)ReloadBtnTap:(id)sender {
-    //reload all when reload button tapped
-    [self viewDidLoad];
+//refresh table
+- (void)refreshTable{
+    [refreshControl endRefreshing];
+    results = [appDelegate fetchArrayFromCoreData:@"RSS"];
     [self.tableView reloadData];
+    [self viewDidLoad];
 }
+
 @end

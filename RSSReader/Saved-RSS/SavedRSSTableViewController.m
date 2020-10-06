@@ -15,6 +15,7 @@
     NSManagedObjectContext *context;
     AppDelegate *appDelegate;
     
+    UIRefreshControl *refreshControl;
 }
 
 @end
@@ -39,6 +40,15 @@
         
     }
     
+    //Refresh control
+    refreshControl = [[UIRefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+
+    if (@available(iOS 10.0, *)) {
+        self.tableView.refreshControl = refreshControl;
+    } else {
+        [self.tableView addSubview:refreshControl];
+    }
 }
 
 #pragma mark - Table view data source
@@ -75,11 +85,6 @@
     }
 }
 
-- (IBAction)reloadBtnTap:(id)sender {
-    //reload
-    [self viewDidLoad];
-    [self.tableView reloadData];
-}
 - (IBAction)delAllBtnTap:(id)sender {
     
     UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Alert!" message:@"Are you sure about that?" preferredStyle:UIAlertControllerStyleAlert];
@@ -103,5 +108,13 @@
     
     //show alert
     [self presentViewController:saveAlert animated:YES completion:nil];
+}
+
+//refresh table
+- (void)refreshTable{
+    [refreshControl endRefreshing];
+    results = [appDelegate fetchArrayFromCoreData:@"SavedRSS"];
+    [self.tableView reloadData];
+    [self viewDidLoad];
 }
 @end

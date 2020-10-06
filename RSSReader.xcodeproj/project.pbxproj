@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE168490251F400900914FFF /* SaveNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE16848F251F400900914FFF /* SaveNewsViewController.m */; };
 		EE6C84A7251E29D200507B42 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE6C84A5251E29D200507B42 /* Model.xcdatamodeld */; };
 		EE6C84B3251E4FFA00507B42 /* SavedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6C84B2251E4FFA00507B42 /* SavedTableViewController.m */; };
 		EEFA99D0251B7E91008E695A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EEFA99CF251B7E91008E695A /* AppDelegate.m */; };
@@ -25,8 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EE16848E251F400900914FFF /* SaveNewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaveNewsViewController.h; sourceTree = "<group>"; };
-		EE16848F251F400900914FFF /* SaveNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaveNewsViewController.m; sourceTree = "<group>"; };
 		EE6C84A6251E29D200507B42 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		EE6C84B1251E4FFA00507B42 /* SavedTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavedTableViewController.h; sourceTree = "<group>"; };
 		EE6C84B2251E4FFA00507B42 /* SavedTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedTableViewController.m; sourceTree = "<group>"; };
@@ -85,8 +82,6 @@
 			children = (
 				EE6C84B1251E4FFA00507B42 /* SavedTableViewController.h */,
 				EE6C84B2251E4FFA00507B42 /* SavedTableViewController.m */,
-				EE16848E251F400900914FFF /* SaveNewsViewController.h */,
-				EE16848F251F400900914FFF /* SaveNewsViewController.m */,
 			);
 			path = "Saved-news";
 			sourceTree = "<group>";
@@ -217,7 +212,6 @@
 			files = (
 				EEFA99F8251BDA34008E695A /* TableViewCell.m in Sources */,
 				EEFA99F0251BA4B0008E695A /* DetailViewController.m in Sources */,
-				EE168490251F400900914FFF /* SaveNewsViewController.m in Sources */,
 				F8246A3C25291D4B0042EBA1 /* SaveRSSTableViewCell.m in Sources */,
 				F8246A3825291CF50042EBA1 /* SavedRSSTableViewController.m in Sources */,
 				EEFA99F4251BBEA0008E695A /* MainViewController.m in Sources */,
